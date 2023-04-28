@@ -1,5 +1,5 @@
 package Apple;
-
-public interface ApplePredicate {
-    boolean test(Apple apple);
+@FunctionalInterface
+public interface ApplePredicate<T> {
+    boolean test(T t);
 }
