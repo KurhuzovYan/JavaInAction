@@ -2,6 +2,7 @@ package Trader;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class Main {
@@ -23,19 +24,19 @@ public class Main {
 
         List<Transaction> transactionsIn2011 = TraderUtils.getTransactionsIn2011(transactions);
         System.out.println(transactionsIn2011);
-        Set<String> uniqueCityOfTraders = TraderUtils.getUniqueCity(List.of(raoul, mario, alan, brian));
+        Set<String> uniqueCityOfTraders = TraderUtils.getUniqueCity(transactions);
         System.out.println(uniqueCityOfTraders);
-        Set<Trader> tradersFromCambridge = TraderUtils.tradersFromCambridge(transactions);
+        List<Trader> tradersFromCambridge = TraderUtils.tradersFromCambridge(transactions);
         System.out.println(tradersFromCambridge);
-        String allTradersNames = TraderUtils.getAllTradersNames(List.of(raoul, mario, alan, brian));
+        String allTradersNames = TraderUtils.getAllTradersNames(transactions);
         System.out.println(allTradersNames);
-        boolean traderFromMilan = TraderUtils.isTraderFromMilan(List.of(raoul, mario, alan, brian));
+        boolean traderFromMilan = TraderUtils.isTraderFromMilan(transactions);
         System.out.println(traderFromMilan);
         String allTransactionsFromCambridge = TraderUtils.allTransactionsFromCambridge(transactions);
         System.out.println(allTransactionsFromCambridge);
-        int maxValueOfTransactions = TraderUtils.getMaxValueOfTransactions(transactions);
-        System.out.println(maxValueOfTransactions);
-        int minValueOfTransactions = TraderUtils.getMinValueOfTransactions(transactions);
-        System.out.println(minValueOfTransactions);
+        Optional<Transaction> maxValueOfTransactions = TraderUtils.getMaxValueOfTransactions(transactions);
+        System.out.println(maxValueOfTransactions.get());
+        Optional<Transaction> minValueOfTransactions = TraderUtils.getMinValueOfTransactions(transactions);
+        System.out.println(minValueOfTransactions.get());
     }
 }

@@ -2,6 +2,7 @@ package Trader;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,28 +14,32 @@ public class TraderUtils {
                 .collect(Collectors.toList());
     }
 
-    public static Set<String> getUniqueCity(List<Trader> traders) {
-        return traders.stream()
-                .map(Trader::getCity)
+    public static Set<String> getUniqueCity(List<Transaction> transactions) {
+        return transactions.stream()
+                .map(t -> t.getTrader().getCity())
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Trader> tradersFromCambridge(List<Transaction> transactions) {
+    public static List<Trader> tradersFromCambridge(List<Transaction> transactions) {
         return transactions.stream()
                 .map(Transaction::getTrader)
                 .filter(trader -> trader.getCity().equals("Cambridge"))
-                .collect(Collectors.toSet());
+                .sorted(Comparator.comparing(Trader::getName))
+                .distinct()
+                .collect(Collectors.toList());
     }
 
-    public static String getAllTradersNames(List<Trader> traders) {
-        return traders.stream()
-                .map(Trader::getName)
+    public static String getAllTradersNames(List<Transaction> transactions) {
+        return transactions.stream()
+                .map(t -> t.getTrader().getName())
+                .distinct()
                 .sorted()
                 .collect(Collectors.joining(", "));
     }
 
-    public static boolean isTraderFromMilan(List<Trader> traders) {
-        return traders.stream()
+    public static boolean isTraderFromMilan(List<Transaction> transactions) {
+        return transactions.stream()
+                .map(Transaction::getTrader)
                 .anyMatch(trader -> trader.getCity().equals("Milan"));
     }
 
@@ -45,17 +50,13 @@ public class TraderUtils {
                 .collect(Collectors.joining(", "));
     }
 
-    public static int getMaxValueOfTransactions(List<Transaction> transactions) {
+    public static Optional<Transaction> getMaxValueOfTransactions(List<Transaction> transactions) {
         return transactions.stream()
-                .mapToInt(Transaction::getValue)
-                .max()
-                .getAsInt();
+                .max(Comparator.comparing(Transaction::getValue));
     }
 
-    public static int getMinValueOfTransactions(List<Transaction> transactions){
+    public static Optional<Transaction> getMinValueOfTransactions(List<Transaction> transactions) {
         return transactions.stream()
-                .mapToInt(Transaction::getValue)
-                .min()
-                .getAsInt();
+                .min(Comparator.comparing(Transaction::getValue));
     }
- }
+}
