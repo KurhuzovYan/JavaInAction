@@ -55,6 +55,12 @@ public class TraderUtils {
                 .max(Comparator.comparing(Transaction::getValue));
     }
 
+    public static int getSumOfTransactions(List<Transaction> transactions) {
+        return transactions.stream()
+                .mapToInt(Transaction::getValue)
+                .sum();
+    }
+
     public static Optional<Transaction> getMinValueOfTransactions(List<Transaction> transactions) {
         return transactions.stream()
                 .min(Comparator.comparing(Transaction::getValue));

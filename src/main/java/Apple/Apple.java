@@ -3,18 +3,14 @@ package Apple;
 public class Apple {
 
     private int weight;
-    private int weight2;
-    private int weight3;
     private Color color;
 
-    public Apple(int weight, Color color) {
+    private String name;
+
+    public Apple(int weight, Color color, String name) {
         this.weight = weight;
         this.color = color;
-    }
-    public Apple(int weight, int weight2, int weight3){
-        this.weight = weight;
-        this.weight2 = weight2;
-        this.weight3 = weight3;
+        this.name = name;
     }
     public Apple(){}
 
@@ -34,13 +30,13 @@ public class Apple {
         this.weight = weight;
     }
 
-
+    public String getName() {
+        return name;
+    }
     @Override
     public String toString() {
-        return "Apple{" +
+        return "Apple: " +
                 "weight=" + weight +
-                ", color=" + color +
-                '}';
+                ", name='" + name + '\'';
     }
-
 }

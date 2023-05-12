@@ -38,5 +38,6 @@ public class Main {
         System.out.println(maxValueOfTransactions.get());
         Optional<Transaction> minValueOfTransactions = TraderUtils.getMinValueOfTransactions(transactions);
         System.out.println(minValueOfTransactions.get());
+        System.out.println(TraderUtils.getSumOfTransactions(transactions));
     }
 }
