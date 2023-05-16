@@ -1,4 +1,6 @@
+
 package Apple;
+
 
 public class Apple {
 
@@ -7,13 +9,14 @@ public class Apple {
 
     private String name;
 
+
     public Apple(int weight, Color color, String name) {
         this.weight = weight;
         this.color = color;
         this.name = name;
     }
     public Apple(){}
-
+    @Marker("This is msg from annotation Marker")
     public int getWeight() {
         return weight;
     }

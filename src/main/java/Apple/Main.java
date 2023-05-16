@@ -1,5 +1,6 @@
 package Apple;
 
+import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.function.*;
 
@@ -92,6 +93,9 @@ public class Main {
         System.out.println(AppleUtils.groupingByCounting(apples));
         Map<Color, Apple> colorOptionalMap = AppleUtils.groupingByWeightWithMaxBy(apples);
         MathematicalExample.partitionPrimes(30).forEach((k, v) -> System.out.println(k + ":" + v));
+
+        var annotation = Apple.class.isAnnotation();
+        System.out.println(annotation);
 
 
 //        System.out.println(s);
